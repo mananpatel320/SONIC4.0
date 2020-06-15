@@ -7,6 +7,7 @@ import PostItem from '../posts/PostItem';
 import CommentForm from '../post/CommentForm';
 import CommentItem from '../post/CommentItem';
 import { getPost } from '../../actions/post';
+import Button from '@material-ui/core/Button';
 
 const Post = ({ getPost, post: { post, loading }, match }) => {
   useEffect(() => {
@@ -17,9 +18,9 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
     <Spinner />
   ) : (
     <Fragment>
-      <Link to="/posts" className="btn">
-        Back To Posts
-      </Link>
+      <Button variant="contained" color="primary" component={Link} to="/posts">
+        Back to Posts
+      </Button>
       <PostItem post={post} showActions={false} />
       <CommentForm postId={post._id} />
       <div className="comments">

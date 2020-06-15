@@ -1,7 +1,7 @@
 {
-  "name": "devconnector",
+  "name": "sonic",
   "version": "1.0.0",
-  "description": "Social network for developers",
+  "description": "Social networking site for campus students",
   "main": "server.js",
   "scripts": {
     "start": " cross-env NODE_ENV=production &  node server",
@@ -10,7 +10,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "author": "Brad Traversy",
+  "author": "Manan Patel",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.2",

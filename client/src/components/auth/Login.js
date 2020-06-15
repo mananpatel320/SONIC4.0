@@ -3,6 +3,10 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
+import Typography from '@material-ui/core/Typography';
+import 'fontsource-roboto';
+import PersonIcon from '@material-ui/icons/Person';
+import Button from '@material-ui/core/Button';
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -26,10 +30,21 @@ const Login = ({ login, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <h1 className="large text-primary">Sign In</h1>
-      <p className="lead">
-        <i className="fas fa-user" /> Sign Into Your Account
-      </p>
+      <Typography variant="h3" gutterBottom>
+        SIGN IN
+      </Typography>
+      <Typography>
+        <div
+          variant="h4"
+          style={{
+            display: 'flex',
+            alignItems: 'center'
+          }}
+        >
+          <PersonIcon />
+          <p>Sign Into Your Account </p>
+        </div>
+      </Typography>
       <form className="form" onSubmit={onSubmit}>
         <div className="form-group">
           <input

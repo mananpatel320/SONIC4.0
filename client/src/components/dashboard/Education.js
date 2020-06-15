@@ -1,49 +1,90 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { deleteEducation } from '../../actions/profile';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import 'fontsource-roboto';
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: '#3f51b5',
+    color: theme.palette.common.white
+  },
+  body: {
+    fontSize: 14
+  }
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover
+    }
+  }
+}))(TableRow);
+
+const useStyles = makeStyles({
+  table: {
+    minWidth: 700
+  }
+});
 
 const Education = ({ education, deleteEducation }) => {
-  const educations = education.map(edu => (
-    <tr key={edu._id}>
-      <td>{edu.school}</td>
-      <td className="hide-sm">{edu.degree}</td>
-      <td>
+  const classes = useStyles();
+  const educations = education.map((edu) => (
+    <StyledTableRow key={edu._id}>
+      <StyledTableCell component="th" scope="row">
+        {edu.school}
+      </StyledTableCell>
+      <StyledTableCell>{edu.degree}</StyledTableCell>
+      <StyledTableCell>
         <Moment format="YYYY/MM/DD">{moment.utc(edu.from)}</Moment> -{' '}
         {edu.to === null ? (
           ' Now'
         ) : (
           <Moment format="YYYY/MM/DD">{moment.utc(edu.to)}</Moment>
         )}
-      </td>
-      <td>
-        <button
+      </StyledTableCell>
+      <StyledTableCell align="right">
+        <Button
+          variant="contained"
+          color="primary"
           onClick={() => deleteEducation(edu._id)}
-          className="btn btn-danger"
         >
           Delete
-        </button>
-      </td>
-    </tr>
+        </Button>
+      </StyledTableCell>
+    </StyledTableRow>
   ));
 
   return (
-    <Fragment>
-      <h2 className="my-2">Education Credentials</h2>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>School</th>
-            <th className="hide-sm">Degree</th>
-            <th className="hide-sm">Years</th>
-            <th />
-          </tr>
-        </thead>
-        <tbody>{educations}</tbody>
-      </table>
-    </Fragment>
+    <TableContainer component={Paper}>
+      <Typography variant="h6" gutterBottom>
+        Education Credentials
+      </Typography>
+      <Table className={classes.table} aria-label="customized table">
+        <TableHead>
+          <TableRow>
+            <StyledTableCell>School</StyledTableCell>
+            <StyledTableCell>Degree</StyledTableCell>
+            <StyledTableCell>Years</StyledTableCell>
+            <StyledTableCell />
+          </TableRow>
+        </TableHead>
+        <TableBody>{educations}</TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 
@@ -52,7 +93,4 @@ Education.propTypes = {
   deleteEducation: PropTypes.func.isRequired
 };
 
-export default connect(
-  null,
-  { deleteEducation }
-)(Education);
+export default connect(null, { deleteEducation })(Education);

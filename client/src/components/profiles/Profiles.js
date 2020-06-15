@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import ProfileItem from './ProfileItem';
 import { getProfiles } from '../../actions/profile';
+import Typography from '@material-ui/core/Typography';
+import LanguageIcon from '@material-ui/icons/Language';
 
 const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   useEffect(() => {
@@ -16,18 +18,30 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
         <Spinner />
       ) : (
         <Fragment>
-          <h1 className='large text-primary'>Developers</h1>
-          <p className='lead'>
-            <i className='fab fa-connectdevelop' /> Browse and connect with
-            developers
-          </p>
-          <div className='profiles'>
+          <Typography variant="h3" gutterBottom>
+            PROFILES
+          </Typography>
+
+          <Typography>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center'
+              }}
+            >
+              <LanguageIcon />
+              <p>Browse and connect with other students</p>
+            </div>
+          </Typography>
+          <div className="profiles">
             {profiles.length > 0 ? (
-              profiles.map(profile => (
+              profiles.map((profile) => (
                 <ProfileItem key={profile._id} profile={profile} />
               ))
             ) : (
-              <h4>No profiles found...</h4>
+              <Typography variant="h4" gutterBottom>
+                No profiles found...
+              </Typography>
             )}
           </div>
         </Fragment>
@@ -41,11 +55,8 @@ Profiles.propTypes = {
   profile: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   profile: state.profile
 });
 
-export default connect(
-  mapStateToProps,
-  { getProfiles }
-)(Profiles);
+export default connect(mapStateToProps, { getProfiles })(Profiles);

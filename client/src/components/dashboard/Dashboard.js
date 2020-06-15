@@ -6,6 +6,11 @@ import DashboardActions from './DashboardActions';
 import Experience from './Experience';
 import Education from './Education';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
+import Typography from '@material-ui/core/Typography';
+import 'fontsource-roboto';
+import PersonIcon from '@material-ui/icons/Person';
+import Button from '@material-ui/core/Button';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 const Dashboard = ({
   getCurrentProfile,
@@ -19,28 +24,47 @@ const Dashboard = ({
 
   return (
     <Fragment>
-      <h1 className="large text-primary">Dashboard</h1>
-      <p className="lead">
-        <i className="fas fa-user" /> Welcome {user && user.name}
-      </p>
+      <Typography variant="h3" gutterBottom>
+        DASHBOARD
+      </Typography>
+      <Typography>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center'
+          }}
+        >
+          <PersonIcon />
+          <p>Welcome {user && user.name}</p>
+        </div>
+      </Typography>
       {profile !== null ? (
         <Fragment>
           <DashboardActions />
           <Experience experience={profile.experience} />
           <Education education={profile.education} />
 
-          <div className="my-2">
-            <button className="btn btn-danger" onClick={() => deleteAccount()}>
-              <i className="fas fa-user-minus" /> Delete My Account
-            </button>
-          </div>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => deleteAccount()}
+          >
+            <DeleteForeverIcon /> Delete My Account
+          </Button>
         </Fragment>
       ) : (
         <Fragment>
-          <p>You have not yet setup a profile, please add some info</p>
-          <Link to="/create-profile" className="btn btn-primary my-1">
+          <Typography variant="body1" gutterBottom>
+            You have not yet setup a profile, please add some info
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            component={Link}
+            to="/create-profile"
+          >
             Create Profile
-          </Link>
+          </Button>
         </Fragment>
       )}
     </Fragment>

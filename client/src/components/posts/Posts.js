@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import PostItem from './PostItem';
 import PostForm from './PostForm';
 import { getPosts } from '../../actions/post';
+import Typography from '@material-ui/core/Typography';
+import 'fontsource-roboto';
+import PersonIcon from '@material-ui/icons/Person';
 
 const Posts = ({ getPosts, post: { posts } }) => {
   useEffect(() => {
@@ -12,12 +15,22 @@ const Posts = ({ getPosts, post: { posts } }) => {
 
   return (
     <Fragment>
-      <h1 className="large text-primary">Posts</h1>
-      <p className="lead">
-        <i className="fas fa-user" /> Welcome to the community
-      </p>
+      <Typography variant="h3" gutterBottom>
+        POSTS
+      </Typography>
+      <Typography>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center'
+          }}
+        >
+          <PersonIcon />
+          <p>Welcome to the community</p>
+        </div>
+      </Typography>
       <PostForm />
-      <div className="posts">
+      <div>
         {posts.map((post) => (
           <PostItem key={post._id} post={post} />
         ))}
