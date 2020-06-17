@@ -59,7 +59,7 @@ const Experience = ({ experience, deleteExperience }) => {
       <StyledTableCell align="right">
         <Button
           variant="contained"
-          color="primary"
+          color="secondary"
           onClick={() => deleteExperience(exp._id)}
         >
           Delete
@@ -69,7 +69,7 @@ const Experience = ({ experience, deleteExperience }) => {
   ));
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} style={{ marginTop: '10px' }}>
       <Typography variant="h6" gutterBottom>
         Experience Credentials
       </Typography>

@@ -60,10 +60,10 @@ const ProfileForm = ({
     instagram
   } = formData;
 
-  const onChange = e =>
+  const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     createProfile(formData, history, profile ? true : false);
   };
@@ -79,13 +79,10 @@ const ProfileForm = ({
         <div className="form-group">
           <select name="status" value={status} onChange={onChange}>
             <option>* Select Professional Status</option>
-            <option value="Developer">Developer</option>
-            <option value="Junior Developer">Junior Developer</option>
-            <option value="Senior Developer">Senior Developer</option>
-            <option value="Manager">Manager</option>
             <option value="Student or Learning">Student or Learning</option>
-            <option value="Instructor">Instructor or Teacher</option>
-            <option value="Intern">Intern</option>
+            <option value="Faculty">Faculty</option>
+            <option value="Administration Staff">Administration Staff</option>
+            <option value="Alumni">Alumni</option>
             <option value="Other">Other</option>
           </select>
           <small className="form-text">
@@ -95,14 +92,14 @@ const ProfileForm = ({
         <div className="form-group">
           <input
             type="text"
-            placeholder="Company"
+            placeholder="BITS Pilani Hyderabad Campus"
             name="company"
+            defaultValue="BITS Pilani Hyderabad Campus"
+            disabled
             value={company}
             onChange={onChange}
           />
-          <small className="form-text">
-            Could be your own company or one you work for
-          </small>
+          <small className="form-text">Your institution</small>
         </div>
         <div className="form-group">
           <input
@@ -248,7 +245,7 @@ ProfileForm.propTypes = {
   profile: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   profile: state.profile
 });
 

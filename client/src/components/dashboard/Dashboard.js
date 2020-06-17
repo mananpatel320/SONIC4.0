@@ -40,7 +40,7 @@ const Dashboard = ({
       </Typography>
       {profile !== null ? (
         <Fragment>
-          <DashboardActions />
+          <DashboardActions user={user} />
           <Experience experience={profile.experience} />
           <Education education={profile.education} />
 
@@ -48,6 +48,7 @@ const Dashboard = ({
             variant="contained"
             color="secondary"
             onClick={() => deleteAccount()}
+            style={{ marginTop: '20px' }}
           >
             <DeleteForeverIcon /> Delete My Account
           </Button>

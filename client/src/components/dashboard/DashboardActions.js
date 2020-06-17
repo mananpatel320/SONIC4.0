@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,10 +16,18 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const DashboardActions = () => {
+const DashboardActions = ({ user: { _id } }) => {
   useStyles();
   return (
-    <ButtonGroup color="primary" aria-label="outlined primary button group">
+    <ButtonGroup
+      color="primary"
+      aria-label="outlined primary button group"
+      style={{ marginTop: '10px', marginBottom: '10px' }}
+    >
+      <Button component={Link} to={`/profile/${_id}`}>
+        <AccountCircleIcon />
+        My Profile
+      </Button>
       <Button component={Link} to="/edit-profile">
         Edit Profile
       </Button>

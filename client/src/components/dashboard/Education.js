@@ -59,7 +59,7 @@ const Education = ({ education, deleteEducation }) => {
       <StyledTableCell align="right">
         <Button
           variant="contained"
-          color="primary"
+          color="secondary"
           onClick={() => deleteEducation(edu._id)}
         >
           Delete
@@ -69,7 +69,7 @@ const Education = ({ education, deleteEducation }) => {
   ));
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} style={{ marginTop: '10px' }}>
       <Typography variant="h6" gutterBottom>
         Education Credentials
       </Typography>

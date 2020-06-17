@@ -21,12 +21,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   const classes = useStyles();
   const authLinks = (
     <ul>
       <Button component={Link} to="/profiles" color="inherit">
-        Students
+        Profiles
       </Button>
       <Button component={Link} to="/posts" color="inherit">
         Posts
