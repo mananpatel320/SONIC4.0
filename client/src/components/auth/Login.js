@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
 import Typography from '@material-ui/core/Typography';
 import 'fontsource-roboto';
+import TextField from '@material-ui/core/TextField';
 import PersonIcon from '@material-ui/icons/Person';
 import Button from '@material-ui/core/Button';
 
@@ -42,35 +43,44 @@ const Login = ({ login, isAuthenticated }) => {
           }}
         >
           <PersonIcon />
-          <p>Sign Into Your Account </p>
+          Sign Into Your Account
         </div>
       </Typography>
-      <form className="form" onSubmit={onSubmit}>
-        <div className="form-group">
-          <input
+      <form onSubmit={onSubmit}>
+        <div>
+          <TextField
             type="email"
-            placeholder="Email Address"
+            variant="filled"
+            label="Email Address"
             name="email"
+            fullWidth
             value={email}
+            style={{ marginTop: '20px', marginBottom: '10px' }}
             onChange={onChange}
             required
           />
         </div>
-        <div className="form-group">
-          <input
+        <div>
+          <TextField
             type="password"
-            placeholder="Password"
+            label="Password"
+            variant="filled"
             name="password"
             value={password}
+            fullWidth
+            style={{ marginTop: '10px', marginBottom: '10px' }}
             onChange={onChange}
             minLength="6"
           />
         </div>
-        <input type="submit" className="btn btn-primary" value="Login" />
+        <Button type="submit" color="primary" variant="contained">
+          {' '}
+          Login{' '}
+        </Button>
       </form>
-      <p className="my-1">
+      <Typography className="my-1">
         Don't have an account? <Link to="/register">Sign Up</Link>
-      </p>
+      </Typography>
     </Fragment>
   );
 };

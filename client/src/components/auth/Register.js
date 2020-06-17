@@ -4,6 +4,10 @@ import { Link, Redirect } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import PersonIcon from '@material-ui/icons/Person';
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -33,52 +37,74 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <h1 className="large text-primary">Sign Up</h1>
-      <p className="lead">
-        <i className="fas fa-user" /> Create Your Account
-      </p>
-      <form className="form" onSubmit={onSubmit}>
-        <div className="form-group">
-          <input
+      <Typography variant="h3" gutterBottom>
+        SIGN UP
+      </Typography>
+      <Typography>
+        <div
+          variant="h4"
+          style={{
+            display: 'flex',
+            alignItems: 'center'
+          }}
+        >
+          <PersonIcon />
+          Create Your Account
+        </div>
+      </Typography>
+      <form onSubmit={onSubmit}>
+        <div>
+          <TextField
             type="text"
-            placeholder="Name"
+            label="Name"
             name="name"
+            variant="filled"
+            fullWidth
             value={name}
+            style={{ marginTop: '20px', marginBottom: '10px' }}
             onChange={onChange}
           />
         </div>
-        <div className="form-group">
-          <input
+        <div>
+          <TextField
             type="email"
-            placeholder="Email Address"
+            label="Email Address"
             name="email"
+            fullWidth
+            variant="filled"
             value={email}
+            style={{ marginTop: '10px', marginBottom: '10px' }}
             onChange={onChange}
           />
-          <small className="form-text">
-            This site uses Gravatar so if you want a profile image, use a
-            Gravatar email
-          </small>
         </div>
-        <div className="form-group">
-          <input
+        <div>
+          <TextField
             type="password"
-            placeholder="Password"
+            label="Password"
             name="password"
+            variant="filled"
+            fullWidth
             value={password}
+            style={{ marginTop: '10px', marginBottom: '10px' }}
             onChange={onChange}
           />
         </div>
-        <div className="form-group">
-          <input
+        <div>
+          <TextField
             type="password"
-            placeholder="Confirm Password"
+            label="Confirm Password"
+            variant="filled"
             name="password2"
+            fullWidth
             value={password2}
+            style={{ marginTop: '10px', marginBottom: '10px' }}
             onChange={onChange}
           />
         </div>
-        <input type="submit" className="btn btn-primary" value="Register" />
+        <Button type="submit" variant="contained" color="primary">
+          {' '}
+          Register{' '}
+        </Button>
       </form>
       <p className="my-1">
         Already have an account? <Link to="/login">Sign In</Link>

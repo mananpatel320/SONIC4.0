@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 
 const Landing = ({ isAuthenticated }) => {
   if (isAuthenticated) {
@@ -12,18 +13,30 @@ const Landing = ({ isAuthenticated }) => {
     <section className="landing">
       <div className="dark-overlay">
         <div className="landing-inner">
-          <h1 className="x-large">Developer Connector</h1>
+          <h1 className="x-large">Social Networking in Campus</h1>
           <p className="lead">
-            Create a developer profile/portfolio, share posts and get help from
-            other developers
+            Create a student profile/portfolio, share posts and get help from
+            other students
           </p>
           <div className="buttons">
-            <Link to="/register" className="btn btn-primary">
+            <Button
+              component={Link}
+              variant="contained"
+              color="primary"
+              to="/register"
+              style={{ marginRight: '20px' }}
+            >
               Sign Up
-            </Link>
-            <Link to="/login" className="btn btn-light">
+            </Button>
+            <Button
+              component={Link}
+              variant="contained"
+              color="primary"
+              to="/login"
+              style={{ marginLeft: '20px' }}
+            >
               Login
-            </Link>
+            </Button>
           </div>
         </div>
       </div>
