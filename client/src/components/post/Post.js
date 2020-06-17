@@ -8,8 +8,21 @@ import CommentForm from '../post/CommentForm';
 import CommentItem from '../post/CommentItem';
 import { getPost } from '../../actions/post';
 import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    backgroundColor: theme.palette.background.paper
+  },
+  inline: {
+    display: 'inline'
+  }
+}));
 
 const Post = ({ getPost, post: { post, loading }, match }) => {
+  const classes = useStyles();
   useEffect(() => {
     getPost(match.params.id);
   }, [getPost, match.params.id]);
@@ -23,11 +36,11 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
       </Button>
       <PostItem post={post} showActions={false} />
       <CommentForm postId={post._id} />
-      <div className="comments">
+      <List className={classes.root}>
         {post.comments.map((comment) => (
           <CommentItem key={comment._id} comment={comment} postId={post._id} />
         ))}
-      </div>
+      </List>
     </Fragment>
   );
 };

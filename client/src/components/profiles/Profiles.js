@@ -30,7 +30,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
               }}
             >
               <LanguageIcon />
-              <p>Browse and connect with other students</p>
+              <p>Browse and connect with other members</p>
             </div>
           </Typography>
           <div className="profiles">
